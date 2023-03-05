@@ -25,7 +25,7 @@ make test
 
 The source code for tests can be found in [./hello-world/tests/](./hello-world/tests/).
 
-It is highly recommended to write unit tests for all transforms of the data pipeline individually.
+You are strongly urged to write individual unit tests for each transform in the data pipeline.
 
 ## Integration with FlowEHR
 
