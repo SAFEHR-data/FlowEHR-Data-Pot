@@ -13,3 +13,6 @@ config.yaml
 
 # vs code settings
 .vscode/
+
+# Artifacts
+**/artifacts/**

@@ -20,13 +20,23 @@ help: ## Show this help
         | column -t -s '|'
 	@echo
 
-build: ## Build the Python wheel(s)
+install-test: ## Installs the required dependencies for testing
+	python3 -m pip install -e ".[test]"
+
+install: ## Installs the required dependencies
+	python3 -m pip install -e "."
+
+build: install ## Build the Python wheel(s)
 	python3 -m build
 
-test: ## Run Python unit tests
-	python3 -m unittest
+test: install-test ## Run Python unit tests
+	python3 -m pytest 
 
-artifacts: build
+artifacts: build ## Gather artifacts for sending to Spark
 	mkdir -p artifacts
 	cp entrypoint.py artifacts
 	cp dist/*.whl artifacts/
+
+clean: ## Clean all built objects
+	rm -r artifacts
+	rm -r dist
