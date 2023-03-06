@@ -38,5 +38,7 @@ artifacts: build ## Gather artifacts for sending to Spark
 	cp dist/*.whl artifacts/
 
 clean: ## Clean all built objects
-	rm -r artifacts
-	rm -r dist
+	rm -rf artifacts
+	rm -rf dist
+	rm -rf src/*.egg-info
+	find . -name "*.pyc" -type f -delete
