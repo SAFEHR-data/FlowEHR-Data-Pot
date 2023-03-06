@@ -5,24 +5,12 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "hello-world"
 version = "0.0.1"
-dependencies = [
-    "build == 0.10.0"
-]
+dependencies = []
 
 [project.optional-dependencies]
 test = [
     "pyspark == 3.3.1",
-    "pytest == 7.2.1",
 ]
-
-[tool.pytest.ini_options]
-minversion = "7.2.1"
-testpaths = [
-    "tests"
+build = [
+    "build == 0.10.0"
 ]
-
-[tool.isort]
-profile = "black"
-
-[tool.mypy]
-python_version = "3.10"

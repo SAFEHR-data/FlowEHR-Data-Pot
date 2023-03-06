@@ -23,14 +23,14 @@ help: ## Show this help
 install-test: ## Installs the required dependencies for testing
 	python3 -m pip install -e ".[test]"
 
-install: ## Installs the required dependencies
-	python3 -m pip install -e "."
+install-build: ## Installs the required dependencies
+	python3 -m pip install -e ".[build]"
 
-build: install ## Build the Python wheel(s)
+build: install-build ## Build the Python wheel(s)
 	python3 -m build
 
 test: install-test ## Run Python unit tests
-	python3 -m pytest 
+	python3 -m unittest
 
 artifacts: build ## Gather artifacts for sending to Spark
 	mkdir -p artifacts
