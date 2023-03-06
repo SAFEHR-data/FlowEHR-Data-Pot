@@ -18,9 +18,8 @@ The entry point of the pipeline Python wheel
 
 
 from pyspark.context import SparkContext
-from pyspark.sql.session import SparkSession
 from pyspark.sql import DataFrame
-
+from pyspark.sql.session import SparkSession
 
 sc = SparkContext.getOrCreate()
 spark = SparkSession(sc)
