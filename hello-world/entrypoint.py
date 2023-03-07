@@ -12,7 +12,6 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-from pyspark.context import SparkContext
 from pyspark.sql.session import SparkSession
 from src.transform import example_transform
 
