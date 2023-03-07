@@ -43,5 +43,5 @@ repos:
 
       - id: run-mypy
         name: Run mypy
-        entry: ./run_pre_commit.sh
+        entry: ./run_mypy.sh
         language: system
