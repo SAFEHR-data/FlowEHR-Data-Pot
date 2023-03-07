@@ -23,8 +23,11 @@ help: ## Show this help
 install-test: ## Installs the required dependencies for testing
 	python3 -m pip install -e ".[test]"
 
-install-build: ## Installs the required dependencies
+install-build: ## Installs the required dependencies for building
 	python3 -m pip install -e ".[build]"
+
+install-lint: ## Installs the required dependencies for linting
+	python3 -m pip install -e ".[lint]"
 
 build: install-build ## Build the Python wheel(s)
 	python3 -m build
@@ -43,8 +46,8 @@ clean: ## Clean all built objects
 	rm -rf src/*.egg-info
 	find . -name "*.pyc" -type f -delete
 
-mypy: install-test ## Run mypy (see https://jaredkhan.com/blog/mypy-pre-commit on why it isn't run in pre-commit hook)
+mypy: install-lint ## Run mypy (see https://jaredkhan.com/blog/mypy-pre-commit on why it isn't run in pre-commit hook)
 	mypy "."
 
-lint: install-test mypy ## Run pre-commit checks
+lint: install-lint mypy ## Run pre-commit checks
 	pre-commit run --all-files
