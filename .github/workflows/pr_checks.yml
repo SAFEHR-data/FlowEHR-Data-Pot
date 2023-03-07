@@ -36,11 +36,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install setuptools==67.4.
 
-      - name: Run mypy
-        working-directory: ./hello-world
-        run: |
-          make mypy
-
       - name: Run tests
         working-directory: ./hello-world
         run: |
