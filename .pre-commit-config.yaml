@@ -32,12 +32,12 @@ repos:
     hooks:
       - id: isort
         name: isort (python)
-        args: ["--disallow-untyped-defs"]
 
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.0.1
     hooks:
     -   id: mypy
+        args: ["--disallow-untyped-defs"]
 
   - repo: local
     hooks:
