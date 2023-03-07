@@ -17,3 +17,8 @@ build = [
 
 [tool.mypy]
 python_version = "3.10"
+disallow_untyped_defs = true
+
+[[tool.mypy.overrides]]
+module = "testcontainers.*"
+ignore_missing_imports = true

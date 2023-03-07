@@ -43,8 +43,8 @@ clean: ## Clean all built objects
 	rm -rf src/*.egg-info
 	find . -name "*.pyc" -type f -delete
 
-lint: install-test ## Run pre-commit checks
-	pre-commit run --all-files
+mypy: install-test ## Run mypy (see https://jaredkhan.com/blog/mypy-pre-commit on why it isn't run in pre-commit hook)
+	mypy "."
 
-mypy: install-test
-	mypy --disallow-untyped-defs "."
+lint: install-test mypy ## Run pre-commit checks
+	pre-commit run --all-files
