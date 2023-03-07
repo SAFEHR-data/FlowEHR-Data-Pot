@@ -43,5 +43,6 @@ repos:
 
       - id: run-mypy
         name: Run mypy
-        entry: ./run_mypy.sh
+        entry: make -C ./hello-world mypy
         language: system
+        pass_filenames: false
