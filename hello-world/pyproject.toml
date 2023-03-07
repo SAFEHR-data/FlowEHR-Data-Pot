@@ -14,3 +14,6 @@ test = [
 build = [
     "build == 0.10.0"
 ]
+
+[tool.mypy]
+python_version = "3.10"

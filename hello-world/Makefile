@@ -45,3 +45,6 @@ clean: ## Clean all built objects
 
 lint: install-test ## Run pre-commit checks
 	pre-commit run --all-files
+
+mypy: install-test
+	mypy --disallow-untyped-defs "."
