@@ -38,6 +38,7 @@ repos:
     hooks:
     -   id: mypy
         args: ["--disallow-untyped-defs"]
+        language: system
 
   - repo: local
     hooks:

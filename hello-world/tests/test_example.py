@@ -18,7 +18,7 @@ from .helpers.pyspark_test import PySparkTest
 
 
 class ExampleTransformTest(PySparkTest):
-    def test_example(self):
+    def test_example(self) -> None:
         input_df = self.spark.createDataFrame([(1,), (2,), (3,), (2,), (3,)], ["value"])
 
         output_df = example_transform(input_df)

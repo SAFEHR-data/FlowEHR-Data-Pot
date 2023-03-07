@@ -42,3 +42,6 @@ clean: ## Clean all built objects
 	rm -rf dist
 	rm -rf src/*.egg-info
 	find . -name "*.pyc" -type f -delete
+
+lint: install-test ## Run pre-commit checks
+	pre-commit run --all-files

@@ -18,12 +18,14 @@ from pyspark.sql import SparkSession
 
 
 class PySparkTest(unittest.TestCase):
+    spark: SparkSession
+
     @classmethod
-    def setUpClass(cls):
+    def setUpClass(cls) -> None:
         cls.spark = (
             SparkSession.builder.master("local[*]").appName("Unit-tests").getOrCreate()
         )
 
     @classmethod
-    def tearDownClass(cls):
+    def tearDownClass(cls) -> None:
         cls.spark.stop()
