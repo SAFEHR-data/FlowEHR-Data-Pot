@@ -10,10 +10,11 @@ The following guide assumes you know how to create a Data Pipeline on Databricks
 
 ## Local development
 
-TODO: write up about using devcontainer environment
+For local development, there is a Devcontainer configuration of this repository.
+To start using it, [start your Devcontainer environment](https://code.visualstudio.com/docs/devcontainers/tutorial). 
 
-For local development, there is a local installation of Spark provided in the Devcontainer image of this repository.  
-To start using it, [start your Devcontainer environment](https://code.visualstudio.com/docs/devcontainers/tutorial), and navigate into `hello-world` directory in the Terminal:
+### Running tests locally
+To run tests, navigate into `hello-world` directory in the Terminal:
 
 ```
 cd hello-world

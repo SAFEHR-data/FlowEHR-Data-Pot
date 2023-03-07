@@ -9,6 +9,9 @@
 	"features": {
 		"ghcr.io/devcontainers-contrib/features/pre-commit:2": {
 			"version": "2.0.7"
+		},
+		"ghcr.io/devcontainers/features/java:1": {
+			"version": "17.0.6-ms"
 		}
 	},
 
