@@ -40,3 +40,8 @@ repos:
         entry: .github/linters/check_headers_exist.sh
         language: script
         pass_filenames: false
+
+      - id: run-mypy
+        name: Run mypy
+        entry: ./run_pre_commit.sh
+        language: system
