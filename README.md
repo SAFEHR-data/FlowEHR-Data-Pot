@@ -87,7 +87,7 @@ To deploy the pipeline in the context of FlowEHR, please follow these steps:
 
 1. Clone [FlowEHR repository](https://github.com/UCLH-Foundry/FlowEHR).
 
-1. Follow the [steps outlined in the README](https://github.com/UCLH-Foundry/FlowEHR#getting-started) to set up your dev environment and deploy FlowEHR. As part of this, you will need to run `make deploy`. 
+1. Follow the [steps outlined in the README](https://github.com/UCLH-Foundry/FlowEHR#getting-started) to set up your dev environment and deploy FlowEHR. As part of this, you will need to run `make infrastructure-transform`. 
 
 1. Use one of the following options to reference your pipeline code in FlowEHR repo:
 
@@ -114,7 +114,7 @@ To deploy the pipeline in the context of FlowEHR, please follow these steps:
      - git@github.com:tanya-borisova/my-pipeline.git
     ```
 
-1. Re-run `make deploy` from the root of FlowEHR while running in your Devcontainer. In the log output, you should see new resources of type `azurerm_data_factory_pipeline.pipeline` being created. 
+1. Re-run `make infrastructure-transform` from the root of FlowEHR while running in your Devcontainer. In the log output, you should see new resources of type `azurerm_data_factory_pipeline.pipeline` being created. 
 If at this stage you don't see the resources being created, double-check that you have both `Makefile` and `activities.json` at the root of your pipeline directory in `transform/pipelines`.
 
 1. In Azure Portal, navigate to the instance of Azure Data Factory deployed in your environment. Launch Studio, then on the left under Author find Pipelines. If everything is correct, you should see your pipelines created there. You can click on your pipeline and press Debug to trigger a debug run of the pipeline. If at this stage you don't see your pipeline being created, most likely your `activities.json` configuration isn't correct. Review it and try again.
