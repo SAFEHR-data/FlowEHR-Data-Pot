@@ -47,7 +47,7 @@ clean: ## Clean all built objects
 	find . -name "*.pyc" -type f -delete
 
 mypy: install-test install-lint ## Run mypy (see https://jaredkhan.com/blog/mypy-pre-commit on why it isn't run in pre-commit hook)
-	mypy "."
+	mypy "src"
 
 lint: install-lint ## Run pre-commit checks
 	pre-commit run --all-files
