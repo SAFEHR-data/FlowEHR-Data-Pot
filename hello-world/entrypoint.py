@@ -13,7 +13,7 @@
 #  limitations under the License.
 
 from pyspark.sql.session import SparkSession
-from src.transform import example_transform
+from transform import example_transform
 
 # For an ADF pipeline that triggers a Databricks job though,
 # we have to define an entrypoint file (I haven't found another way.)
