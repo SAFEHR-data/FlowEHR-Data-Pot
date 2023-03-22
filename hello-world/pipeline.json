@@ -1,5 +1,5 @@
 {
-    "name": "PatientsPipeline",
+    "name": "HelloWorldPipeline",
     "properties": {
         "activities": [
             {
