@@ -34,30 +34,38 @@ You are strongly urged to write individual unit tests for each transform in the 
 
 To make sure the Data Pipeline can be deployed by FlowEHR, the pipeline must have two components:
 
-1. An `activities.json` file. This should conform to the way activities are specified in Azure Data Factory. It is not created independently, rather, it is dependent on FlowEHR in the implementation details such as names of linked services, paths and so on.
+1. An `pipeline.json` file. This should conform to the way a pipeline is defined in Azure Data Factory. It is not created independently, rather, it is dependent on FlowEHR in the implementation details such as names of linked services, paths and so on.
 
-See [example](./hello-world/activities.json) in the repo:
+See [example](./hello-world/pipeline.json) in the repo:
 
 ```json
-  [
-    {
-      "name": "DatabricksPythonActivity",
-      "type": "DatabricksSparkPython",
-      "typeProperties": {
-          "pythonFile": "dbfs:/pipelines/hello-world/artifacts/entrypoint.py",  // Will be uploaded to DBFS by Terraform configuration in FlowEHR repo
-          "libraries": [
-              {
-                  "whl": "dbfs:/pipelines/hello-world/artifacts/src-0.0.1-py3-none-any.whl"  // Will be uploaded to DBFS by a script in FlowEHR repo
-                  // More libraries can be added here, e.g. from PyPi
+{
+  "name": "PatientsPipeline",
+  "properties": {
+      "activities": [
+          {
+              "name": "DatabricksPythonActivity",
+              "type": "DatabricksSparkPython",
+              "typeProperties": {
+                  "pythonFile": "dbfs:/pipelines/hello-world/artifacts/entrypoint.py",
+                  "libraries": [
+                      {
+                          // Will be uploaded to DBFS by a script in FlowEHR repo
+                          // More libraries can be added here, e.g. from PyPi
+                          "whl": "dbfs:/pipelines/hello-world/artifacts/hello_world-0.0.1-py3-none-any.whl"
+                      }
+                  ]
+              },
+              "linkedServiceName": {
+                  "referenceName": "ADBLinkedServiceViaMSI",  // Needs to be in sync with what is set in FlowEHR
+                  "type": "LinkedServiceReference"
               }
-          ]
-      },
-      "linkedServiceName": {
-          "referenceName": "ADBLinkedServiceViaMSI",  // Needs to be in sync with what is set in FlowEHR
-          "type": "LinkedServiceReference"
-      }
-    }
-  ]
+          }
+      ],
+      "parameters": {}
+  },
+  "type": "Microsoft.DataFactory/factories/pipelines"
+}  
 ```
 
 In there: 
@@ -80,7 +88,7 @@ artifacts: build
 
 For a PySpark pipeline, it is recommended to put any library or shared code into a .whl file, as this way it is more straightforward to write automated tests for. There is an [entrypoint.py](./hello-world/entrypoint.py) that is required by Azure Data Factory to be present that is just executing the code that is present in the library.
 
-Note that the name of the artifact must match exactly the name specified in `activities.json`.
+Note that the name of the artifact must match exactly the name specified in `pipeline.json`.
 
 ## Deploy the pipeline code into a dev environment 
 
@@ -92,14 +100,14 @@ To deploy the pipeline in the context of FlowEHR, please follow these steps:
 
 1. Use one of the following options to reference your pipeline code in FlowEHR repo:
 
-    * Copy over your pipeline code (together with a Makefile and an `artifact.json`) into `/transform/pipelines` into your checked-out copy of FlowEHR. (Note that `/transform/pipelines` is gitignored in FlowEHR). You should have a directory tree similar to the following:
+    * Copy over your pipeline code (together with a Makefile and an `pipeline.json`) into `/transform/pipelines` into your checked-out copy of FlowEHR. (Note that `/transform/pipelines` is gitignored in FlowEHR). You should have a directory tree similar to the following:
 
     ```
     └── transform
         └── pipelines
             ├── my-pipeline 
             │   ├── Makefile
-            │   ├── activities.json
+            │   ├── pipeline.json
             │   ├── src
             │   │   └── ...
             │   ├── tests
@@ -116,9 +124,9 @@ To deploy the pipeline in the context of FlowEHR, please follow these steps:
     ```
 
 1. Re-run `make infrastructure-transform` from the root of FlowEHR while running in your Devcontainer. In the log output, you should see new resources of type `azurerm_data_factory_pipeline.pipeline` being created. 
-If at this stage you don't see the resources being created, double-check that you have both `Makefile` and `activities.json` at the root of your pipeline directory in `transform/pipelines`.
+If at this stage you don't see the resources being created, double-check that you have both `Makefile` and `pipeline.json` at the root of your pipeline directory in `transform/pipelines`.
 
-1. In Azure Portal, navigate to the instance of Azure Data Factory deployed in your environment. Launch Studio, then on the left under Author find Pipelines. If everything is correct, you should see your pipelines created there. You can click on your pipeline and press Debug to trigger a debug run of the pipeline. If at this stage you don't see your pipeline being created, most likely your `activities.json` configuration isn't correct. Review it and try again.
+1. In Azure Portal, navigate to the instance of Azure Data Factory deployed in your environment. Launch Studio, then on the left under Author find Pipelines. If everything is correct, you should see your pipelines created there. You can click on your pipeline and press Debug to trigger a debug run of the pipeline. If at this stage you don't see your pipeline being created, most likely your `pipeline.json` configuration isn't correct. Review it and try again.
 
 1. If necessary, add more pipelines under `/transform/pipelines` and/or in `config.transform.yaml` by repeating the above steps.
 

@@ -1,0 +1,25 @@
+{
+    "name": "PatientsPipeline",
+    "properties": {
+        "activities": [
+            {
+                "name": "DatabricksPythonActivity",
+                "type": "DatabricksSparkPython",
+                "typeProperties": {
+                    "pythonFile": "dbfs:/pipelines/hello-world/artifacts/entrypoint.py",
+                    "libraries": [
+                        {
+                            "whl": "dbfs:/pipelines/hello-world/artifacts/hello_world-0.0.1-py3-none-any.whl"
+                        }
+                    ]
+                },
+                "linkedServiceName": {
+                    "referenceName": "ADBLinkedServiceViaMSI",
+                    "type": "LinkedServiceReference"
+                }
+            }
+        ],
+        "parameters": {}
+    },
+    "type": "Microsoft.DataFactory/factories/pipelines"
+}
