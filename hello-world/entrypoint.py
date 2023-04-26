@@ -12,13 +12,24 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
+import os
+import logging
 from pyspark.sql.session import SparkSession
 from transform import example_transform
+from app_logging import initialize_logging
 
 # For an ADF pipeline that triggers a Databricks job though,
 # we have to define an entrypoint file (I haven't found another way.)
 if __name__ == "__main__":
     spark = SparkSession.builder.getOrCreate()
+
+    print(os.environ)
+
+    initialize_logging(logging.DEBUG)
+    print(f"DEBUG: {logging.DEBUG}")
+    print(f"INFO: {logging.INFO}")
+    logging.info("ENTRYPOINT_D3")
+
     df = spark.createDataFrame([(1,), (2,), (3,), (2,), (3,)], ["value"])
     # This is an example of how transform from a built Python wheel library
     # will be used in the entrypoint pipeline

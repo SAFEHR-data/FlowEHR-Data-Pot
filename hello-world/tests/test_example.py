@@ -14,7 +14,9 @@
 
 from src.transform import example_transform
 
+import logging
 from .helpers.pyspark_test import PySparkTest
+from src.app_logging import initialize_logging, disable_unwanted_loggers
 
 
 class ExampleTransformTest(PySparkTest):
@@ -29,3 +31,9 @@ class ExampleTransformTest(PySparkTest):
 
         self.assertSetEqual(set(expected_df.columns), set(output_df.columns))
         self.assertEqual(expected_df.collect(), output_df.collect())
+
+
+class AnotherExampleTest(PySparkTest):
+    def test_example(self) -> None:
+        initialize_logging(logging.INFO) 
+        logging.info("TEST")
