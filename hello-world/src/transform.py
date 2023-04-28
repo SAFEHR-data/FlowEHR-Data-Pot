@@ -22,5 +22,5 @@ from pyspark.sql import DataFrame
 
 
 def example_transform(df: DataFrame) -> DataFrame:
-    logging.info(f"Executing example transform")
+    logging.info("Executing example transform")
     return df.groupby("value").count()
