@@ -17,11 +17,11 @@ The entry point of the pipeline Python wheel
 """
 
 import logging
+
 from pyspark.sql import DataFrame
-from app_logging import initialize_logging
-import os
 
 
 def example_transform(df: DataFrame) -> DataFrame:
-    logging.info("TRANSFORM_LOG_D3")
-    return df.groupby("value").count()
+    count = df.groupby("value").count()
+    logging.info(f"Result is {count}")
+    return count
