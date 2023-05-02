@@ -14,7 +14,7 @@
 
 import logging
 
-from app_logging import initialize_logging
+from monitoring import initialize_logging
 from pyspark.sql.session import SparkSession
 from transform import example_transform
 
