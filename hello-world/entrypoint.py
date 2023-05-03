@@ -12,6 +12,9 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
+import logging
+
+from monitoring import initialize_logging
 from pyspark.sql.session import SparkSession
 from transform import example_transform
 
@@ -19,6 +22,9 @@ from transform import example_transform
 # we have to define an entrypoint file (I haven't found another way.)
 if __name__ == "__main__":
     spark = SparkSession.builder.getOrCreate()
+
+    initialize_logging(logging.INFO)
+
     df = spark.createDataFrame([(1,), (2,), (3,), (2,), (3,)], ["value"])
     # This is an example of how transform from a built Python wheel library
     # will be used in the entrypoint pipeline

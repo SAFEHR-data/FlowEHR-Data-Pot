@@ -7,9 +7,7 @@
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
-		"ghcr.io/devcontainers-contrib/features/pre-commit:2": {
-			"version": "2.0.7"
-		},
+		"ghcr.io/devcontainers-contrib/features/pre-commit:2": {},
 		"ghcr.io/devcontainers/features/java:1": {
 			"version": "17.0.6-ms"
 		}
@@ -18,7 +16,7 @@
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
-	"postCreateCommand": "git config --global --add safe.directory /workspaces/FlowEHR-Data-Pot && cd /workspaces/FlowEHR-Data-Pot && pre-commit install --hook-type pre-push"
+	"postCreateCommand": "pre-commit install --hook-type pre-push"
 
 	// Configure tool-specific properties.
 	// "customizations": {},

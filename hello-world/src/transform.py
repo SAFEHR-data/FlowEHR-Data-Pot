@@ -16,9 +16,11 @@
 The entry point of the pipeline Python wheel
 """
 
+import logging
 
 from pyspark.sql import DataFrame
 
 
 def example_transform(df: DataFrame) -> DataFrame:
+    logging.info("Executing example transform")
     return df.groupby("value").count()
