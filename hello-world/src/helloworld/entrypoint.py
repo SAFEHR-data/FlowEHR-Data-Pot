@@ -12,10 +12,10 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-from db import feature_store_config, save_feature_store_table
-from monitoring import initialize_logging
+from helloworld.db import feature_store_config, save_feature_store_table
+from helloworld.monitoring import initialize_logging
 from pyspark.sql.session import SparkSession
-from transform import example_transform
+from helloworld.transform import example_transform
 
 # For an ADF pipeline that triggers a Databricks job though,
 # we have to define an entrypoint file (I haven't found another way.)

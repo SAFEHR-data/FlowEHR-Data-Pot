@@ -12,9 +12,8 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-from helloworld.transform import example_transform
-
 from helloworld.tests.helpers.pyspark_test import PySparkTest
+from helloworld.transform import example_transform
 
 
 class ExampleTransformTest(PySparkTest):

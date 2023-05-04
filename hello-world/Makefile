@@ -37,7 +37,7 @@ test: install-test ## Run Python unit tests
 
 artifacts: build ## Gather artifacts for sending to Spark
 	mkdir -p artifacts
-	cp entrypoint.py artifacts
+	cp src/helloworld/entrypoint.py artifacts
 	cp dist/*.whl artifacts/
 
 clean: ## Clean all built objects
