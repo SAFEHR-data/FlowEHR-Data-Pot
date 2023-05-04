@@ -60,6 +60,7 @@ def initialize_logging(
     the given logging level. Creates and returns a logger adapter that integrates
     the correlation ID, if given, to the log messages.
     :param logging_level: The logging level to set e.g., logging.WARNING.
+    :param export_interval_seconds: How frequently to export data.
     :param correlation_id: Optional. The correlation ID that is passed on
     to the operation_Id in App Insights.
     :returns: A newly created logger adapter.
