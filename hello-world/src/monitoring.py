@@ -14,7 +14,7 @@
 
 import logging
 import os
-from typing import Dict, List, Optional, Union
+from typing import Dict, List, Optional, Union, Any
 
 from opencensus.ext.azure import metrics_exporter
 from opencensus.ext.azure.log_exporter import AzureLogHandler
@@ -27,7 +27,7 @@ from opencensus.trace.samplers import AlwaysOnSampler
 from opencensus.trace.tracer import Tracer
 
 
-def telemetry_processor_callback_function(envelope):
+def telemetry_processor_callback_function(envelope: Any):
     envelope.tags["ai.cloud.role"] = "databricks"
 
 
@@ -51,7 +51,7 @@ class ExceptionTracebackFilter(logging.Filter):
 
 
 def initialize_logging(
-    logging_level: int,
+    logging_level: int = logging.INFO,
     export_interval_seconds: float = 5.0,
     correlation_id: Optional[str] = None,
 ) -> logging.LoggerAdapter:
