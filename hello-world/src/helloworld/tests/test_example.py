@@ -12,9 +12,9 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-from src.transform import example_transform
+from helloworld.transform import example_transform
 
-from .helpers.pyspark_test import PySparkTest
+from helloworld.tests.helpers.pyspark_test import PySparkTest
 
 
 class ExampleTransformTest(PySparkTest):

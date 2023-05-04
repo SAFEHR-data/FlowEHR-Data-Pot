@@ -15,8 +15,8 @@ import abc
 import logging
 from dataclasses import dataclass
 
-from constants import PIPELINE_NAME
-from monitoring import create_and_send_metric
+from helloworld.constants import PIPELINE_NAME
+from helloworld.monitoring import create_and_send_metric
 from opencensus.stats.measure import MeasureInt
 from pyspark.sql import DataFrame, SparkSession
 
