@@ -33,11 +33,11 @@ build: install-build ## Build the Python wheel(s)
 	python3 -m build
 
 test: install-test ## Run Python unit tests
-	python3 -m unittest
+	python3 -m unittest discover -s src/
 
 artifacts: build ## Gather artifacts for sending to Spark
 	mkdir -p artifacts
-	cp entrypoint.py artifacts
+	cp src/helloworld/entrypoint.py artifacts
 	cp dist/*.whl artifacts/
 
 clean: ## Clean all built objects

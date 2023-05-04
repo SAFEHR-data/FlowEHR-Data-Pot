@@ -14,7 +14,7 @@
 
 import logging
 import os
-from typing import Any, Dict, List, Optional, Union
+from typing import Any
 
 from opencensus.ext.azure import metrics_exporter
 from opencensus.ext.azure.log_exporter import AzureLogHandler
@@ -53,13 +53,14 @@ class ExceptionTracebackFilter(logging.Filter):
 def initialize_logging(
     logging_level: int = logging.INFO,
     export_interval_seconds: float = 5.0,
-    correlation_id: Optional[str] = None,
+    correlation_id: str | None = None,
 ) -> logging.LoggerAdapter:
     """
     Adds the Application Insights handler for the root logger and sets
     the given logging level. Creates and returns a logger adapter that integrates
     the correlation ID, if given, to the log messages.
     :param logging_level: The logging level to set e.g., logging.WARNING.
+    :param export_interval_seconds: How frequently to export data.
     :param correlation_id: Optional. The correlation ID that is passed on
     to the operation_Id in App Insights.
     :returns: A newly created logger adapter.
@@ -90,14 +91,14 @@ def initialize_logging(
 
 
 def create_and_send_metric(
-    value: Union[int, float],
-    tags: Dict[str, str],
+    value: int | float,
+    tags: dict[str, str],
     name: str,
     description: str,
     view_prefix: str,
     unit: str,
-    tag_keys: List[str],
-    metric_type: Union[MeasureInt, MeasureFloat],
+    tag_keys: list[str],
+    metric_type: MeasureInt | MeasureFloat,
     aggregation: type = aggregation.SumAggregation,
     export_interval_seconds: float = 1.0,
 ) -> None:
@@ -136,7 +137,7 @@ def create_and_send_metric(
     """
 
     if "APPLICATIONINSIGHTS_CONNECTION_STRING" not in os.environ:
-        logging.warn("APPLICATIONINSIGHTS_CONNECTION_STRING is not set, exiting")
+        logging.warning("APPLICATIONINSIGHTS_CONNECTION_STRING is not set, exiting")
         return
 
     metric_measure = metric_type(name=name, description=description, unit=unit)
