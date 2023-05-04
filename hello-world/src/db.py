@@ -17,7 +17,6 @@ from dataclasses import dataclass
 
 from opencensus.stats.measure import MeasureInt
 from pyspark.sql import DataFrame, SparkSession
-
 from src.constants import PIPELINE_NAME
 from src.monitoring import create_and_send_metric
 
