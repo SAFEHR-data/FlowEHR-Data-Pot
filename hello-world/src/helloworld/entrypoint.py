@@ -12,21 +12,21 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-import logging
-
-from monitoring import initialize_logging
+from helloworld.db import feature_store_config, save_feature_store_table
+from helloworld.monitoring import initialize_logging
+from helloworld.transform import example_transform
 from pyspark.sql.session import SparkSession
-from transform import example_transform
 
 # For an ADF pipeline that triggers a Databricks job though,
 # we have to define an entrypoint file (I haven't found another way.)
 if __name__ == "__main__":
-    spark = SparkSession.builder.getOrCreate()
+    spark_session = SparkSession.builder.getOrCreate()
+    initialize_logging()
 
-    initialize_logging(logging.INFO)
-
-    df = spark.createDataFrame([(1,), (2,), (3,), (2,), (3,)], ["value"])
+    df = spark_session.createDataFrame([(1,), (2,), (3,), (2,), (3,)], ["value"])
     # This is an example of how transform from a built Python wheel library
     # will be used in the entrypoint pipeline
     out_df = example_transform(df)
-    out_df.display
+
+    output_db_config = feature_store_config(spark_session)
+    save_feature_store_table(output_db_config, out_df, "example_table")
