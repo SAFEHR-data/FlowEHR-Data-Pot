@@ -12,7 +12,11 @@ build = [
     "build == 0.10.0"
 ]
 test = [
-    "pyspark == 3.3.1"
+    "pandas == 1.5.3",
+    "pandas-stubs == 1.5.3.230203",
+    "pyspark == 3.3.1",
+    "opencensus-ext-azure==1.1.9",
+    "opencensus-ext-logging==0.1.1"
 ]
 lint = [
     "mypy == 1.0.0"

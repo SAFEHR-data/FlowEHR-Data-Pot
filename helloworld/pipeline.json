@@ -10,16 +10,6 @@
                     "libraries": [
                         {
                             "whl": "dbfs:/pipelines/hello-world/artifacts/hello_world-0.0.5-py3-none-any.whl"
-                        },
-                        {
-                            "pypi": {
-                                "package": "opencensus-ext-azure==1.1.9"
-                            }
-                        },
-                        {
-                            "pypi": {
-                                "package": "opencensus-ext-logging==0.1.1"
-                            }
                         }
                     ]
                 },

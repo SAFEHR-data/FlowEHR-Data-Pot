@@ -12,20 +12,17 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-import unittest
-
-from pyspark.sql import SparkSession
+from helloworld.transform import example_transform
 
 
-class PySparkTest(unittest.TestCase):
-    spark: SparkSession
+def test_example(self) -> None:
+    input_df = spark_session.createDataFrame([(1,), (2,), (3,), (2,), (3,)], ["value"])
 
-    @classmethod
-    def setUpClass(cls) -> None:
-        cls.spark = (
-            SparkSession.builder.master("local[*]").appName("Unit-tests").getOrCreate()
-        )
+    output_df = example_transform(input_df)
 
-    @classmethod
-    def tearDownClass(cls) -> None:
-        cls.spark.stop()
+    expected_df = spark_session.createDataFrame(
+        [(1, 1), (2, 2), (3, 2)], ["value", "count"]
+    )
+
+    assert set(expected_df.columns) == set(output_df.columns)
+    assert expected_df.collect() == output_df.collect()
