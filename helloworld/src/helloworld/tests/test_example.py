@@ -12,19 +12,19 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-from helloworld.tests.helpers.pyspark_test import PySparkTest
+from pyspark.sql import SparkSession
+
 from helloworld.transform import example_transform
 
 
-class ExampleTransformTest(PySparkTest):
-    def test_example(self) -> None:
-        input_df = self.spark.createDataFrame([(1,), (2,), (3,), (2,), (3,)], ["value"])
+def test_example(spark_session: SparkSession) -> None:
+    input_df = spark_session.createDataFrame([(1,), (2,), (3,), (2,), (3,)], ["value"])
 
-        output_df = example_transform(input_df)
+    output_df = example_transform(input_df)
 
-        expected_df = self.spark.createDataFrame(
-            [(1, 1), (2, 2), (3, 2)], ["value", "count"]
-        )
+    expected_df = spark_session.createDataFrame(
+        [(1, 1), (2, 2), (3, 2)], ["value", "count"]
+    )
 
-        self.assertSetEqual(set(expected_df.columns), set(output_df.columns))
-        self.assertEqual(expected_df.collect(), output_df.collect())
+    assert set(expected_df.columns) == set(output_df.columns)
+    assert expected_df.collect() == output_df.collect()

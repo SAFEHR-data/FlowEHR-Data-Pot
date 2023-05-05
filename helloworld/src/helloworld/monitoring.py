@@ -27,7 +27,7 @@ from opencensus.trace.samplers import AlwaysOnSampler
 from opencensus.trace.tracer import Tracer
 
 
-def telemetry_processor_callback_function(envelope: Any):
+def telemetry_processor_callback_function(envelope: Any) -> None:
     envelope.tags["ai.cloud.role"] = "databricks"
 
 
@@ -39,12 +39,11 @@ class ExceptionTracebackFilter(logging.Filter):
     that does not contain 'exc_info'.
     """
 
-    def filter(self, record):
+    def filter(self, record: logging.LogRecord) -> bool:
         if record.exc_info:
             logger = logging.getLogger(record.name)
             _, exception_value, _ = record.exc_info
             message = f"{record.getMessage()}\nException message: '{exception_value}'"
-            print(f"{record.getMessage()}\nException message: '{exception_value}'")
             logger.log(record.levelno, message)
 
         return True
@@ -59,10 +58,12 @@ def initialize_logging(
     Adds the Application Insights handler for the root logger and sets
     the given logging level. Creates and returns a logger adapter that integrates
     the correlation ID, if given, to the log messages.
+
     :param logging_level: The logging level to set e.g., logging.WARNING.
-    :param export_interval_seconds: How frequently to export data.
+    :param export_interval_seconds: How often the logs will be exported,
+            the default is 5 seconds.
     :param correlation_id: Optional. The correlation ID that is passed on
-    to the operation_Id in App Insights.
+            to the operation_Id in App Insights.
     :returns: A newly created logger adapter.
     """
     logger = logging.getLogger()
@@ -100,7 +101,7 @@ def create_and_send_metric(
     tag_keys: list[str],
     metric_type: MeasureInt | MeasureFloat,
     aggregation: type = aggregation.SumAggregation,
-    export_interval_seconds: float = 1.0,
+    export_interval_seconds: float = 5.0,
 ) -> None:
     """
     This method creates a metric measure, a corresponding View with columns and
@@ -120,19 +121,19 @@ def create_and_send_metric(
     :param view_prefix: Prefix to use for the Metric view.
     :type view_prefix: str
     :param unit: Description of the unit, which must follow
-                 https://unitsofmeasure.org/ucum.
+            https://unitsofmeasure.org/ucum.
     :type unit: str
     :param tag_keys: Tag keys to aggregate on for the view created.
     :type tag_keys: list
     :param metric_type: Type to use for the created metric, can be either
-                        opencensus.stats.measure.MeasureInt or
-                        opencensus.stats.measure.MeasureFloat.
+            opencensus.stats.measure.MeasureInt or
+            opencensus.stats.measure.MeasureFloat.
     :type metric_type: MeasureInt, MeasureFloat
     :param aggregation: Type of aggregation as described in
-                        https://opencensus.io/stats/view/#aggregations.
+            https://opencensus.io/stats/view/#aggregations.
     :type aggregation: Aggregation
     :param export_interval_seconds: How often the metrics will be exported,
-                                    the default is every 1 second.
+            the default is every 5 seconds.
     :type export_interval_seconds: int
     """
 
@@ -140,7 +141,9 @@ def create_and_send_metric(
         logging.warning("APPLICATIONINSIGHTS_CONNECTION_STRING is not set, exiting")
         return
 
-    metric_measure = metric_type(name=name, description=description, unit=unit)
+    metric_measure = metric_type(
+        name=name, description=description, unit=unit
+    )  # type: ignore
     key_methods = [tag_key.TagKey(key) for key in tag_keys]
 
     rows_written_view = View(
