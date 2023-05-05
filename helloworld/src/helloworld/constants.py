@@ -14,4 +14,4 @@
 
 
 # Used for monitoring prefix, must match the name of the package
-PIPELINE_NAME: str = "hello-world"
+PIPELINE_NAME: str = "helloworld"
