@@ -4,6 +4,20 @@ This repository provides an example of how to create a Data Pipeline that can be
 
 Using this example, you can build and deploy data transformation code and test it locally via unit tests. Then, you can test it within your dev environment in Azure. Finally, it can be integrated with your deployment of FlowEHR.
 
+## Quick start 
+
+Step 1: Clone this repository
+
+Step 2: _From your cloned repository_, press the "Open in Remote - Containers" below
+
+[
+    ![Open in Remote - Containers](
+        https://img.shields.io/static/v1?label=Remote%20-%20Containers&message=Open&color=blue&logo=visualstudiocode
+    )
+](
+    https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/UCLH-Foundry/FlowEHR-Data-Pot.git
+)
+
 ## Prerequisites
 
 The following guide assumes you know how to create a Data Pipeline on Databricks and PySpark. It also assumes general familiarity with Azure, Devcontainers, Makefile, Azure Data Factory, and Terraform.
