@@ -39,11 +39,11 @@ jobs:
         uses: pre-commit/action@v3.0.0
 
       - name: Run tests
-        working-directory: ./hello-world
+        working-directory: ./helloworld
         run: |
           make test 
 
       - name: Build artifacts
-        working-directory: ./hello-world
+        working-directory: ./helloworld
         run: |
           make artifacts 
