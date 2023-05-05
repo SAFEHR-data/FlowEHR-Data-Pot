@@ -12,10 +12,12 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
+from pyspark.sql import SparkSession
+
 from helloworld.transform import example_transform
 
 
-def test_example(self) -> None:
+def test_example(spark_session: SparkSession) -> None:
     input_df = spark_session.createDataFrame([(1,), (2,), (3,), (2,), (3,)], ["value"])
 
     output_df = example_transform(input_df)
