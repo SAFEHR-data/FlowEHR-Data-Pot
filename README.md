@@ -6,9 +6,11 @@ Using this example, you can build and deploy data transformation code and test i
 
 ## Quick start 
 
-Step 1: Clone this repository
+Step 1: Press the "Use this repository" button on Github:
 
-Step 2: _From your cloned repository_, press the "Open in Remote - Containers" below
+<img width="528" alt="image" src="https://user-images.githubusercontent.com/52954123/236494257-58f5995e-39e5-417f-be93-69005f1c5a6c.png">
+
+Step 2: _From your repository_, press the "Open in Remote - Containers" below
 
 [
     ![Open in Remote - Containers](
