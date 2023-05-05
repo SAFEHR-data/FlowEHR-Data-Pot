@@ -141,7 +141,7 @@ def create_and_send_metric(
         logging.warning("APPLICATIONINSIGHTS_CONNECTION_STRING is not set, exiting")
         return
 
-    metric_measure = metric_type(name=name, description=description, unit=unit) # type: ignore
+    metric_measure = metric_type(name=name, description=description, unit=unit)  # type: ignore
     key_methods = [tag_key.TagKey(key) for key in tag_keys]
 
     rows_written_view = View(
