@@ -10,8 +10,7 @@
 		"ghcr.io/devcontainers-contrib/features/pre-commit:2": {},
 		"ghcr.io/devcontainers/features/java:1": {
 			"version": "17.0.6-ms"
-		},
-		"ghcr.io/devcontainers-contrib/features/pipenv:2": {}
+		}
 	},
 
 	"customizations": {
