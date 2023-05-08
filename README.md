@@ -10,15 +10,16 @@ Step 1: Press the "Use this repository" button on Github:
 
 <img width="528" alt="image" src="https://user-images.githubusercontent.com/52954123/236494257-58f5995e-39e5-417f-be93-69005f1c5a6c.png">
 
-Step 2: _From your repository_, press the "Open in Remote - Containers" below
+Step 2: Clone this repository using VSCode.
 
-[
-    ![Open in Remote - Containers](
-        https://img.shields.io/static/v1?label=Remote%20-%20Containers&message=Open&color=blue&logo=visualstudiocode
-    )
-](
-    https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/UCLH-Foundry/FlowEHR-Data-Pot.git
-)
+_Note that you can use a different IDE as well, but you won't be getting the benefits of using Devcontainers_.
+
+Step 3: Replace all occurences of `helloworld` with the name of the pipeline you are creating.
+
+Step 4: Reopen the repository in Container.
+
+<img width="555" alt="image" src="https://user-images.githubusercontent.com/52954123/236816740-70e3da17-5b93-49d6-80d3-367f764dbc06.png">
+
 
 ## Prerequisites
 
