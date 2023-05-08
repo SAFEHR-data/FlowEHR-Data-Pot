@@ -46,7 +46,7 @@
     // Use 'forwardPorts' to make a list of ports inside the container available locally.
     // "forwardPorts": [],
 
-    "onCreateCommand": "python3 -m pip install -e helloworld",
+    "onCreateCommand": "python3 -m pip install -e helloworld[build,test,lint]",
 
     "postCreateCommand": "pre-commit install --hook-type pre-push"
 
