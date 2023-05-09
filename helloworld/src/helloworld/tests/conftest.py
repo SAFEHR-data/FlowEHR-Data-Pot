@@ -14,7 +14,6 @@
 
 import os
 import time
-from pathlib import Path
 from typing import Iterator
 
 import pytest
@@ -30,7 +29,6 @@ def spark_session() -> Iterator[SparkSession]:
 
     session = (
         SparkSession.builder.master("local[4]")
-        .config("spark.jars", Path(__file__).parent / "postgresql-42.5.2.jar")
         .config("spark.driver.extraJavaOptions", "-Duser.timezone=UTC")
         .config("spark.executor.extraJavaOptions", "-Duser.timezone=UTC")
         .config("spark.sql.session.timeZone", "UTC")
