@@ -31,7 +31,7 @@ install-lint: ## Installs the required dependencies for linting
 
 build: install-build ## Build the Python wheel(s)
 	# SOURCE_DATE_EPOCH is needed to build the wheel idempotently
-	SOURCE_DATE_EPOCH=315532800 p python3 -m build
+	SOURCE_DATE_EPOCH=315532800 python3 -m build
 
 test: install-test ## Run Python unit tests
 	pytest src/
