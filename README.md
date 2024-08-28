@@ -1,6 +1,6 @@
 # Example Data Pipeline on FlowEHR
 
-This repository provides an example of how to create a Data Pipeline that can be deployed as part of [FlowEHR](https://github.com/UCLH-Foundry/FlowEHR).
+This repository provides an example of how to create a Data Pipeline that can be deployed as part of [FlowEHR](https://github.com/SAFEHR-data/FlowEHR).
 
 Using this example, you can build and deploy data transformation code and test it locally via unit tests. Then, you can test it within your dev environment in Azure. Finally, it can be integrated with your deployment of FlowEHR.
 
@@ -86,7 +86,7 @@ See [example](./helloworld/pipeline.json) in the repo:
 ```
 
 In there:
-- `linkedServiceName.referenceName` must be set to the same value as it is [set on FlowEHR repo](https://github.com/UCLH-Foundry/FlowEHR/blob/main/infrastructure/transform/locals.tf#L19).
+- `linkedServiceName.referenceName` must be set to the same value as it is [set on FlowEHR repo](https://github.com/SAFEHR-data/FlowEHR/blob/main/infrastructure/transform/locals.tf#L19).
 - `pythonFile` and `libraries` must have a format like this:
 `dbfs:/pipelines/{pipeline_name}/artifacts/{artifact_name}`.
 
@@ -111,9 +111,9 @@ Note that the name of the artifact must match exactly the name specified in `pip
 
 To deploy the pipeline in the context of FlowEHR, please follow these steps:
 
-1. Clone [FlowEHR repository](https://github.com/UCLH-Foundry/FlowEHR).
+1. Clone [FlowEHR repository](https://github.com/SAFEHR-data/FlowEHR).
 
-1. Follow the [steps outlined in the README](https://github.com/UCLH-Foundry/FlowEHR#getting-started) to set up your dev environment and deploy FlowEHR. As part of this, you will need to run `make infrastructure-transform`.
+1. Follow the [steps outlined in the README](https://github.com/SAFEHR-data/FlowEHR#getting-started) to set up your dev environment and deploy FlowEHR. As part of this, you will need to run `make infrastructure-transform`.
 
 1. Use one of the following options to reference your pipeline code in FlowEHR repo:
 
